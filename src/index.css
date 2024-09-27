@@ -1,0 +1,15 @@
+/* src/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --main-color: #02ba40; 
+    --secondary-color: #00a035;
+  }
+}
+
+
+
