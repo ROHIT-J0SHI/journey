@@ -13,10 +13,10 @@ Journey is a web application designed to simplify the travel planning process. U
 ## Technologies Used
 - **Frontend**: React.js, Tailwind CSS
 - **Backend**: Firebase (for authentication and Firestore database)
-- **APIs**: Pexels API (for fetching images)
+- **APIs**: Pexels and Unsplash (for fetching images), Gemini (for ininerary generation), LocationIQ (for destination autocomplete)
 
 ## Live Demo
-Check out the live version of the application [here](YOUR_DEPLOYMENT_URL).
+Check out the live version of the application [here](https://journey-xi.vercel.app).
 
 ## Installation
 
@@ -27,5 +27,19 @@ Check out the live version of the application [here](YOUR_DEPLOYMENT_URL).
 ### Steps to Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+   git clone https://github.com/ROHIT-J0SHI/journey-AI-travel-planner.git
+2. Navigate to the project directory:
+   ```bash
+   cd YOUR_REPOSITORY
+3. Install dependencies:
+   ```bash
+   npm install
+4. Start the development Server:
+   ```bash
+   npm run dev
 
+
+## Contact
+For inquiries, please reach out to me at rohitjoshii55555@gmail.com.
+
+Thank you for checking out Journey! We hope it helps you plan your next adventure! 🌟
