@@ -1,7 +1,7 @@
-# Journey - Your Personal Travel Guide 🌍✈️
+# journey - Your Personal Travel Guide 🌍✈️
 
 ## Description
-Journey is a web application designed to simplify the travel planning process. Users can create personalized itineraries, explore exciting destinations, and find the best accommodations tailored to their preferences. Whether you're looking for a relaxing beach getaway or an adventurous mountain hike, Journey has got you covered!
+journey is a web application designed to simplify the travel planning process. Users can create personalized itineraries, explore exciting destinations, and find the best accommodations tailored to their preferences. Whether you're looking for a relaxing beach getaway or an adventurous mountain hike, journey has got you covered!
 
 ## Features
 - **User Authentication**: Secure login using Google authentication.
