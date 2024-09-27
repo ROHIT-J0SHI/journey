@@ -217,7 +217,7 @@ function CreateTrip() {
             >
               <h2 className="text-4xl ">{item.icon}</h2>
               <h2 className="font-bold text-lg mt-2">{item.title}</h2>
-              <h2 className="text-gray-500">{item.desc}</h2>
+              <h2 className="text-gray-500 text-sm lg:text-base">{item.desc}</h2>
             </div>
           ))}
         </div>
@@ -240,22 +240,26 @@ function CreateTrip() {
             >
               <h2 className="text-4xl ">{item.icon}</h2>
               <h2 className="font-bold text-lg mt-2">{item.title}</h2>
-              <h2 className="text-gray-500">{item.desc}</h2>
-              <h2 className="text-gray-800">People: {item.people}</h2>
+              <h2 className="text-gray-500 text-sm lg:text-base">{item.desc}</h2>
+              <h2 className="text-gray-800 text-sm lg:text-base">People: {item.people}</h2>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="flex justify-end my-10">
-        <Button onClick={onGenerateTrip} disabled={loading}>
-          {loading ? (
-            <AiOutlineLoading3Quarters className="h-6 w-20 animate-spin" />
-          ) : (
-            "Generate my trip"
-          )}
-        </Button>
-      </div>
+      <div className="flex flex-col items-end my-10">
+  <Button onClick={onGenerateTrip} disabled={loading}>
+    {loading ? (
+      <AiOutlineLoading3Quarters className="h-6 w-20 animate-spin" />
+    ) : (
+      "Generate my trip"
+    )}
+  </Button>
+  {loading && (
+    <span className="mt-2 text-gray-500">Generating your plan, don't quit or refresh</span>
+  )}
+</div>
+
 
       <SignInDialog open={openDialog} onClose={() => setOpenDialog(false)} onSignInSuccess={() => console.log("Signed In!")} />
     </div>
