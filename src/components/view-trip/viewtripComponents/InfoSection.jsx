@@ -43,13 +43,13 @@ function InfoSection({ trip }) {
         </h2>
 
         <div className='flex gap-5'>
-          <h2 className='p-1 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
+          <h2 className='p-2 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
             {noOfDays} Days
           </h2>
-          <h2 className='p-1 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
+          <h2 className='p-2 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
             {budget}
           </h2>
-          <h2 className='p-1 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
+          <h2 className='p-2 px-5 bg-gray-300 text-xs md:text-[15px] rounded-full'>
             {people}
           </h2>
         </div>
