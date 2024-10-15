@@ -43,7 +43,7 @@ const JourneyChatBot = () => {
     setTimeout(() => {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: "bot", text: "Thanks for reaching out! We'll get back to you shortly." },
+        { sender: "bot", text: "Thanks for reaching out! Currently we do not provide custom questions service but we will add it soon. Till then Happy Journey!" },
       ]);
     }, 1000);
 
