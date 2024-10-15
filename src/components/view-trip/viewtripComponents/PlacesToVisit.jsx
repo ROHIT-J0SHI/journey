@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { fetchImageFromPexels } from '@/services/PexelsApi'; // Adjust the import path as needed
 import placeholder from "@/assets/placeholder.jpg";
+import LocalEvent from './LocalEvent'; // Import LocalEvent component
 
-// Helper function to truncate text to the first 20 words
-const truncateDescription = (description, wordLimit = 16) => {
-  if (!description) return "";
-  const words = description.split(" ");
-  if (words.length <= wordLimit) return description;
-  return words.slice(0, wordLimit).join(" ") + "...";
+// Example day descriptions
+const dayDescriptions = {
+  "Day 1": "Start your trip with beautiful landscapes and iconic places.",
+  "Day 2": "Explore hidden gems and enjoy local delicacies.",
+  "Day 3": "Immerse yourself in vibrant culture and rich history.",
+  "Day 4": "Take a deep dive into nature’s wonders and city escapes.",
+  "Day 5": "Discover artistic spots and breathtaking views.",
+  "Day 6": "Indulge in culinary experiences and shopping sprees.",
+  "Day 7": "End your journey with a visit to famous landmarks."
 };
 
 function PlacesToVisit({ trip }) {
   const [placeImages, setPlaceImages] = useState({});
+  const [showLocalEvents, setShowLocalEvents] = useState(false); // State for local events
   const itinerary = trip?.tripInfo?.itinerary;
 
-  // Fetch images for each place
   useEffect(() => {
     const fetchImages = async () => {
       if (!itinerary) return;
@@ -47,64 +51,103 @@ function PlacesToVisit({ trip }) {
     fetchImages();
   }, [itinerary]);
 
-  // Convert itinerary object to an array of [day, places] pairs and sort by day number
   const placeData = itinerary
     ? Object.entries(itinerary).sort(([dayA], [dayB]) => {
-        // Extract the numeric part of the day (e.g., "Day 1" -> 1, "Day 2" -> 2)
         const dayNumA = parseInt(dayA.replace("Day ", ""));
         const dayNumB = parseInt(dayB.replace("Day ", ""));
         return dayNumA - dayNumB;
       })
     : [];
 
+  const generateWikipediaLink = (placeName) => {
+    const query = encodeURIComponent(placeName);
+    return `https://en.wikipedia.org/wiki/${query}`;
+  };
+
+  const handleLocalEventsClick = () => {
+    setShowLocalEvents(true); // Show the LocalEvent component when clicked
+  };
+
   return (
-    <div>
-      <h2 className="font-bold text-[1.75rem] mt-10 mb-5">Places to Visit</h2>
-      <p className="text-gray-600 text-base md:text-lg mb-8">
-        Discover the best spots and hidden gems in your travel to{" "}
-        <span className="font-bold text-main">{trip?.userSelection?.location?.display_name}</span>. Each location is curated to make your journey memorable.
+    <div className="max-w-7xl mx-auto p-6">
+      <h2 className="font-bold text-4xl mb-5 text-gray-900">Places to Visit</h2>
+      <p className="text-gray-700 text-base md:text-lg mb-8">
+        <span className="block md:hidden">
+          Embark on an unforgettable adventure as you discover the best spots and hidden gems in your travel to{" "}
+          <span className="font-bold text-main">{trip?.userSelection?.location?.display_name}</span>.
+        </span>
+        
+        <span className="hidden md:block">
+          Embark on an unforgettable adventure as you discover the best spots and hidden gems in your travel to{" "}
+          <span className="font-bold text-main">{trip?.userSelection?.location?.display_name}</span>. 
+          From breathtaking landscapes to vibrant local cultures, each destination is carefully curated to ensure your journey is both enriching and memorable.
+        </span>
       </p>
 
       <div>
         {placeData.length > 0 ? (
           placeData.map(([day, places], index) => (
-            <div key={index} className="mb-10">
-              <h2 className="font-bold text-[1.5rem] mb-5">{day}</h2>
+            <div key={index} className="mb-12">
+              <h2 className="font-bold text-2xl mb-5">
+                <span className="block md:hidden">{day}</span>
+                <span className="hidden md:block">{day} - {dayDescriptions[day] || "Enjoy your day exploring!"}</span>
+              </h2>
 
-              {/* Grid for places */}
-              <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className={`grid ${places.length <= 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-8`}>
                 {places.map((place, placeIndex) => {
-                  const query = encodeURIComponent(`${place?.placeName}`);
-                  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
-
-                  // Determine the animation class based on the index
-                  const animationClass = placeIndex % 2 === 0 ? "fade-up-right" : "fade-up-left";
+                  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place?.placeName)}`;
 
                   return (
                     <div
                       key={placeIndex}
-                      className="border-none shadow-lg p-4 rounded-lg flex flex-col md:flex-row gap-2 md:gap-8"
-                      data-aos={animationClass} data-aos-duration="1300"
+                      className="group relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                      data-aos="zoom-in" data-aos-duration="1200"
                     >
-                      <img
-                        src={placeImages[place.placeName] || placeholder}
-                        alt={place.placeName}
-                        className="w-full md:max-w-[40%] h-48  md:max-h-60 object-cover rounded-md"
-                      />
-                      <div className="flex flex-col w-full md:w-2/3">
-                        <h3 className="font-semibold text-[1.1rem] mb-2">{place.placeName}</h3>
-                        <p className="text-[13px] text-gray-700 mb-1">{truncateDescription(place["Place details"])}</p>
-                        <div className="flex flex-wrap gap-x-6 gap-y-4 mt-2">
-                          <p className="text-sm">⭐ {place.Rating}</p>
-                          <p className="text-sm">💵 {place["Ticket pricing"]}</p>
-                          <p className="text-sm">🕒 {place["Time to travel"]}</p>
-                          
-                          <span 
+                      <div className="relative h-48 md:h-60 w-full">
+                        <img
+                          src={placeImages[place.placeName] || placeholder}
+                          alt={place.placeName}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
+                        <div className="absolute bottom-0 p-4">
+                          <h3 className="text-lg font-semibold text-white">{place.placeName}</h3>
+                        </div>
+                      </div>
+
+                      <div className="p-4 bg-white flex justify-between text-gray-700 text-sm">
+                        <div className="flex items-center space-x-2">
+                          <span>⭐ {place.Rating}</span>
+                          <span>💵 {place["Ticket pricing"]}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span>🕒 {place["Time to travel"]}</span>
+                        </div>
+                      </div>
+
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-transparent to-black">
+                        <p className="text-white mb-4">{place["Place details"]}</p>
+                        <div className="flex justify-between">
+                          <a
+                            href={generateWikipediaLink(place.placeName)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-main font-semibold hover:text-secondary"
+                          >
+                            Read More
+                          </a>
+                          <button
                             onClick={() => window.open(directionsUrl, "_blank", "noopener,noreferrer")}
-                            className="text-main inline font-semibold hover:text-secondary cursor-pointer"
+                            className="text-main font-semibold hover:text-secondary"
                           >
                             Show Directions
-                          </span>
+                          </button>
+                          <button
+                            onClick={() => handleShare(place.placeName, directionsUrl)}
+                            className="text-main font-semibold hover:text-secondary"
+                          >
+                            Share
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -114,9 +157,50 @@ function PlacesToVisit({ trip }) {
             </div>
           ))
         ) : (
-          <p className="mt-20 text-2xl">Oops! No places found to visit. Please try again later.</p>
+          <p className="mt-20 text-2xl text-center text-gray-700">Oops! No places found to visit. Please try again later.</p>
         )}
       </div>
+
+      {/* Local Events Button */}
+      <button
+  onClick={handleLocalEventsClick}
+  className="fixed bottom-9 right-9 text-main rounded-full text-xs md:text-base h-14 w-14 md:h-16 md:w-16 flex items-center justify-center shadow-2xl bg-main hover:bg-secondary text-white transition-all duration-300 animate-bounce p-5 md:p-10"
+  style={{ zIndex: 1000, boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)' }}
+>
+  Local Events
+</button>
+
+      {/* Render LocalEvent component conditionally */}
+      {showLocalEvents && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-screen-md w-full h-[80vh] overflow-y-auto">
+            <button
+              onClick={() => setShowLocalEvents(false)}
+              className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full h-8 w-8 flex items-center justify-center"
+            >
+              &#x2715;
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-center">Local Events</h2>
+            <LocalEvent /> {/* LocalEvent Component */}
+          </div>
+        </div>
+      )}
+
+      {/* Continuous bounce animation */}
+      <style jsx>{`
+        @keyframes bounce-up {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .animate-bounce {
+          animation: bounce-up 0.6s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }

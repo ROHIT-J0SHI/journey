@@ -10,7 +10,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Viewtrip from "./components/view-trip/[tripId]/Viewtrip.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
-import ContactUs from "./components/custom/ContactUs.jsx";
+import ContactUs from "./components/custom/AboutUs.jsx";
+import Contactus2 from "./components/contact-us/ContactUs.jsx"
 
 // Initialize AOS
 AOS.init();
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "/create-trip",
         element: <CreateTrip />,
+      },
+
+      {
+        path: "/contact-us",
+        element: <Contactus2 />,
       },
       {
         path: "/view-trip/:tripId",

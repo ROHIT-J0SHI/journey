@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import InfoSection from "../viewtripComponents/InfoSection";
 import Hotels from "../viewtripComponents/Hotels";
 import PlacesToVisit from "../viewtripComponents/PlacesToVisit";
+import TravelTips from "../viewtripComponents/TravelTips";
 
 
 function Viewtrip() {
@@ -47,6 +48,8 @@ function Viewtrip() {
         <Hotels trip={trip} />
         {/* Daily Plan */}
         <PlacesToVisit trip={trip} />
+        {/* Travel Tips */}
+        <TravelTips/>
 
         {/* Message Section */}
         <div className="text-center mt-20 ">
