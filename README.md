@@ -27,7 +27,7 @@ Check out the live version of the application [here](https://journey-xi.vercel.a
 ### Steps to Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ROHIT-J0SHI/journey-AI-travel-planner.git
+   git clone https://github.com/ROHIT-J0SHI/journey.git
 2. Navigate to the project directory:
    ```bash
    cd YOUR_REPOSITORY
