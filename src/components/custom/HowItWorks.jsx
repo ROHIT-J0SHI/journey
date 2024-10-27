@@ -97,22 +97,23 @@ const HowItWorks = () => {
       </section>
 
       {/* Destinations Section */}
-      <section className='bg-gray-100 p-10'>
+      <section className='bg-gray-100 py-10 md:p-10'>
       <h1 className="text-3xl text-center font-bold text-gray-900">Explore Stunning Destinations</h1>
       <p className="text-md text-gray-600 text-center mt-2">Discover some of the world's most beautiful places</p>
+      <p className='text-md text-gray-600 text-center mt-2'>(scroll right)</p>
 
-      <div className="mt-10 overflow-x-auto whitespace-nowrap px-4 scrollbar-hide ">
+      <div className="mt-10 overflow-x-auto whitespace-nowrap scrollbar-hide ">
         {places.map((place, index) => (
           <div
             key={index}
             className="relative inline-block border border-gray-300 rounded-lg shadow-md max-w-[350px] m-3 transition-transform duration-300 hover:scale-105 bg-white"
             style={{ minWidth: '350px' }}
           >
-            <div className="relative w-full h-[250px] overflow-hidden rounded-t-lg">
+            <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
               <img
                 src={place.src}
                 alt={place.title}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 rounded-t-lg"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 rounded-lg"
               />
               {/* Overlay with title and description on hover */}
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-300 p-4 rounded-lg">

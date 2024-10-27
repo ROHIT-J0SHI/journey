@@ -12,15 +12,15 @@ function Hero() {
         style={{ backgroundImage: `url(${heroImg})` }}
       >
         {/* Optional overlay for darkening effect */}
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute inset-0 bg-black opacity-70"></div>
       </div>
 
       {/* Text Section */}
       <div className="flex flex-col my-28 lg:mx-28 2xl:my-36 items-center">
-        <h1 className="font-extrabold text-center text-[32px] md:text-[44px] lg:text-[56px] text-white">
+        <h1 className="font-extrabold text-center text-[34px] md:text-[44px] lg:text-[56px] text-white">
           Plan your next trip with journey, <span className="text-main">Your Personal Travel Guide</span>
         </h1>
-        <p className="text-base text-center md:text-lg font-light text-gray-200">
+        <p className="text-sm text-center md:text-lg font-light text-gray-200">
           Whether it's a relaxing beach getaway or an adventurous mountain hike, Journey helps you create personalized travel itineraries tailored to your preferences. Discover exciting destinations, book accommodations, and explore attractions with ease.
         </p>
         <Link to={"/create-trip"}>
