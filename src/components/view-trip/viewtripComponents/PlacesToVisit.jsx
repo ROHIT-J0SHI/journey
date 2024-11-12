@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchImageFromPexels } from '@/services/PexelsApi'; // Adjust the import path as needed
 import placeholder from "@/assets/placeholder.jpg";
-import LocalEvent from './LocalEvent'; // Import LocalEvent component
+
 
 // Example day descriptions
 const dayDescriptions = {
@@ -132,19 +132,19 @@ function PlacesToVisit({ trip }) {
                             href={generateWikipediaLink(place.placeName)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-main font-semibold hover:text-secondary"
+                            className="text-main text-xs md:text-base font-semibold hover:text-secondary"
                           >
                             Read More
                           </a>
                           <button
                             onClick={() => window.open(directionsUrl, "_blank", "noopener,noreferrer")}
-                            className="text-main font-semibold hover:text-secondary"
+                            className="text-main text-xs md:text-base font-semibold hover:text-secondary"
                           >
                             Show Directions
                           </button>
                           <button
                             onClick={() => handleShare(place.placeName, directionsUrl)}
-                            className="text-main font-semibold hover:text-secondary"
+                            className="text-main text-xs md:text-base font-semibold hover:text-secondary"
                           >
                             Share
                           </button>
@@ -172,19 +172,24 @@ function PlacesToVisit({ trip }) {
 
       {/* Render LocalEvent component conditionally */}
       {showLocalEvents && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg relative max-w-screen-md w-full h-[80vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg shadow-xl relative max-w-screen-md w-full h-[80vh] overflow-y-auto">
             <button
               onClick={() => setShowLocalEvents(false)}
-              className="absolute top-3 right-3 bg-red-500 hover:bg-red-600 text-white rounded-full h-8 w-8 flex items-center justify-center"
+              className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white rounded-full h-10 w-10 flex items-center justify-center transition-transform transform hover:scale-110"
             >
               &#x2715;
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-center">Local Events</h2>
-            <LocalEvent /> {/* LocalEvent Component */}
+            <img 
+            src="https://www.shutterstock.com/image-photo/coming-soon-wording-on-white-600nw-1352173331.jpg" 
+            alt="Coming Soon image"
+            className="h-[100%] w-[100%]" />
           </div>
         </div>
       )}
+    
+
+
 
       {/* Continuous bounce animation */}
       <style jsx>{`

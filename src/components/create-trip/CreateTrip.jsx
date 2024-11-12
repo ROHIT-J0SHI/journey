@@ -12,25 +12,17 @@ import { useNavigate } from "react-router-dom";
 import SignInDialog from "../custom/SignInDialog";
 
 const FullScreenLoader = () => (
-  <div className="fixed inset-0 flex items-center justify-center bg-white z-50 w-full h-full">
-    <div className="text-white text-4xl">
-      
-    <a href="/lottie-animation/traveler-trekking-route-3573244" target="_self" className="max-w-full max-h-[17vh]">
-  <video 
-    loading="lazy" 
-    muted 
-    src="https://cdnl.iconscout.com/lottie/premium/thumb/traveler-trekking-route-animation-download-in-lottie-json-gif-static-svg-file-formats--hike-logo-camping-map-summer-pack-travel-animations-3105901.mp4" 
-    type="video/mp4" 
-    autoPlay 
-    loop
-  >
-      
-      </video></a>
-      <p className="mt-4 text-center text-2xl text-black font-bold">Generating your plan, don't quit or refresh</p>
-     
+  <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50 w-full h-full">
+    <div className="flex flex-col items-center justify-center">
+      <div className="border-t-4 border-b-4 border-main w-16 md:w-32 h-16 md:h-32 rounded-full animate-spin"></div>
+      <p className="mt-4 text-center text-2xl text-black font-bold">
+        Generating your plan, don't quit or refresh
+      </p>
     </div>
   </div>
 );
+
+
 
 function CreateTrip() {
   const [place, setPlace] = useState("");
@@ -201,7 +193,7 @@ function CreateTrip() {
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold mb-2">For how many days are you planning the trip?</h2>
+            <h2 className="text-xl mt-10 font-semibold mb-2">For how many days are you planning the trip?</h2>
             <Input
               placeholder="Example: 3"
               type="number"
@@ -213,7 +205,7 @@ function CreateTrip() {
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold my-4">What is your budget?</h2>
+          <h2 className="text-xl mt-10 font-semibold my-4">What is your budget?</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
             {SelectBudgetOptions.map((item, index) => (
               <div
@@ -224,7 +216,7 @@ function CreateTrip() {
                 onClick={() => handleBudgetClick(item)}
               >
                 <h2 className="text-4xl text-center">{item.icon}</h2>
-                <h2 className="font-bold text-lg mt-2 text-center">{item.title}</h2>
+                <h2 className="font-semibold text-lg mt-2 text-center">{item.title}</h2>
                 <h2 className="text-gray-500 text-sm text-center">{item.desc}</h2>
               </div>
             ))}
@@ -232,7 +224,7 @@ function CreateTrip() {
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold my-4">With whom are you planning your next adventure?</h2>
+          <h2 className="text-xl mt-10 font-semibold my-4">With whom are you planning your next adventure?</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
             {SelectTravelsList.map((item, index) => (
               <div
@@ -243,7 +235,7 @@ function CreateTrip() {
                 onClick={() => handlePeopleClick(item)}
               >
                 <h2 className="text-4xl text-center">{item.icon}</h2>
-                <h2 className="font-bold text-lg mt-2 text-center">{item.title}</h2>
+                <h2 className="font-semibold text-lg mt-2 text-center">{item.title}</h2>
                 <h2 className="text-gray-500 text-sm text-center">{item.desc}</h2>
                 <h2 className="text-gray-800 text-sm text-center">People: {item.people}</h2>
               </div>
