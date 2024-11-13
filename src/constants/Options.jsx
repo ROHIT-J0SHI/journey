@@ -32,19 +32,19 @@ export const SelectTravelsList=[
 export const SelectBudgetOptions=[
     {
         id:'1',
-        title:'Cheap ($100 - $150 /day)',
+        title:'Cheap ($40 - $100 /day)',
         desc:'Stay concious of costs',
         icon:'🪙'
     },
     {
         id:'2',
-        title:'Moderate ($150 - $500 /day)',
+        title:'Moderate ($100 - $300 /day)',
         desc:'Keep cost on the average side',
         icon:'💰'
     },
     {
         id:'3',
-        title:'Luxurious ($500+ /day)',
+        title:'Luxurious ($300+ /day)',
         desc:'No worries about the cost',
         icon:'💵'
     }
